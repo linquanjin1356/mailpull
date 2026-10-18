@@ -2,6 +2,12 @@
 
 **接码邮箱收信助手** —— 把散落在多个邮箱里的验证码收进一个界面，顺带生成 2FA 动态码。
 
+[![Stars](https://img.shields.io/github/stars/linquanjin1356/mailpull?style=flat-square)](https://github.com/linquanjin1356/mailpull/stargazers)
+[![Release](https://img.shields.io/github/v/release/linquanjin1356/mailpull?style=flat-square)](https://github.com/linquanjin1356/mailpull/releases)
+[![License](https://img.shields.io/github/license/linquanjin1356/mailpull?style=flat-square)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.8%2B-3776ab?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![Platform](https://img.shields.io/badge/platform-Windows-0078d6?style=flat-square&logo=windows&logoColor=white)](#下载)
+
 ![亮色界面](web_light.png)
 
 <details>
@@ -10,6 +16,20 @@
 ![暗色界面](web_dark.png)
 
 </details>
+
+---
+
+## 下载
+
+不想碰代码就直接下 exe，**双击即用，不用装 Python**：
+
+| 版本 | 文件 | 适合 |
+|---|---|---|
+| **图形版** | [`MailPull-Web.exe`](https://github.com/linquanjin1356/mailpull/releases/latest/download/MailPull-Web.exe) | 浏览器界面，双击自动打开，日常用 |
+| **命令行版** | [`MailPull.exe`](https://github.com/linquanjin1356/mailpull/releases/latest/download/MailPull.exe) | 纯终端，轻量，支持脚本和批量导出 |
+
+> 首次运行 Windows 可能提示「已保护你的电脑」，点**更多信息 → 仍要运行**即可。
+> 两个版本都不需要安装任何环境，界面资源已内联，断网也能打开。
 
 ---
 
