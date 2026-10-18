@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MailPull — 接码邮箱收信助手</title>
+<style>
+/* Tailwind 编译产物（离线内联） */
+*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0}.inset-x-0{left:0;right:0}.bottom-0{bottom:0}.top-0{top:0}.z-50{z-index:50}.z-\[60\]{z-index:60}.mx-auto{margin-left:auto;margin-right:auto}.mb-1\.5{margin-bottom:.375rem}.mt-0\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-2\.5{margin-top:.625rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-1\.5{height:.375rem}.h-10{height:2.5rem}.h-16{height:4rem}.h-4{height:1rem}.h-8{height:2rem}.h-9{height:2.25rem}.h-\[88px\]{height:88px}.max-h-32{max-height:8rem}.min-h-0{min-height:0}.min-h-\[16px\]{min-height:16px}.min-h-\[calc\(100vh-11rem\)\]{min-height:calc(100vh - 11rem)}.min-h-screen{min-height:100vh}.w-1\.5{width:.375rem}.w-4{width:1rem}.w-8{width:2rem}.w-9{width:2.25rem}.w-\[88px\]{width:88px}.w-full{width:100%}.min-w-0{min-width:0}.max-w-7xl{max-width:80rem}.max-w-md{max-width:28rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.-rotate-90{--tw-rotate:-90deg;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(.4,0,.6,1) infinite}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.items-stretch{align-items:stretch}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-2{gap:.5rem}.gap-2\.5{gap:.625rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-1\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.375rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.375rem*var(--tw-space-y-reverse))}.space-y-3\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.875rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.875rem*var(--tw-space-y-reverse))}.overflow-y-auto{overflow-y:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.whitespace-pre-wrap{white-space:pre-wrap}.text-wrap{text-wrap:wrap}.text-balance{text-wrap:balance}.break-words{overflow-wrap:break-word}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-zinc-200{--tw-border-opacity:1;border-color:rgb(228 228 231/var(--tw-border-opacity,1))}.border-zinc-200\/80{border-color:hsla(240,6%,90%,.8)}.bg-amber-50{--tw-bg-opacity:1;background-color:rgb(255 251 235/var(--tw-bg-opacity,1))}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129/var(--tw-bg-opacity,1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.bg-white\/80{background-color:hsla(0,0%,100%,.8)}.bg-white\/90{background-color:hsla(0,0%,100%,.9)}.bg-zinc-300{--tw-bg-opacity:1;background-color:rgb(212 212 216/var(--tw-bg-opacity,1))}.bg-zinc-400{--tw-bg-opacity:1;background-color:rgb(161 161 170/var(--tw-bg-opacity,1))}.bg-zinc-50{--tw-bg-opacity:1;background-color:rgb(250 250 250/var(--tw-bg-opacity,1))}.bg-zinc-900{--tw-bg-opacity:1;background-color:rgb(24 24 27/var(--tw-bg-opacity,1))}.bg-zinc-950\/50{background-color:rgba(9,9,11,.5)}.p-3{padding:.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-2\.5{padding-left:.625rem;padding-right:.625rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-3\.5{padding-left:.875rem;padding-right:.875rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\.5{padding-top:.625rem;padding-bottom:.625rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pb-10{padding-bottom:2.5rem}.pt-4{padding-top:1rem}.text-left{text-align:left}.text-center{text-align:center}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-normal{font-weight:400}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.tracking-tight{letter-spacing:-.025em}.tracking-widest{letter-spacing:.1em}.text-amber-900{--tw-text-opacity:1;color:rgb(120 53 15/var(--tw-text-opacity,1))}.text-red-600{--tw-text-opacity:1;color:rgb(220 38 38/var(--tw-text-opacity,1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.text-zinc-200{--tw-text-opacity:1;color:rgb(228 228 231/var(--tw-text-opacity,1))}.text-zinc-400{--tw-text-opacity:1;color:rgb(161 161 170/var(--tw-text-opacity,1))}.text-zinc-500{--tw-text-opacity:1;color:rgb(113 113 122/var(--tw-text-opacity,1))}.text-zinc-600{--tw-text-opacity:1;color:rgb(82 82 91/var(--tw-text-opacity,1))}.text-zinc-700{--tw-text-opacity:1;color:rgb(63 63 70/var(--tw-text-opacity,1))}.text-zinc-900{--tw-text-opacity:1;color:rgb(24 24 27/var(--tw-text-opacity,1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.outline-none{outline:2px solid transparent;outline-offset:2px}.ring{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color)}.ring,.ring-1{box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.ring-1{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color)}.ring-inset{--tw-ring-inset:inset}.ring-amber-200{--tw-ring-opacity:1;--tw-ring-color:rgb(253 230 138/var(--tw-ring-opacity,1))}.ring-zinc-200{--tw-ring-opacity:1;--tw-ring-color:rgb(228 228 231/var(--tw-ring-opacity,1))}.ring-zinc-300{--tw-ring-opacity:1;--tw-ring-color:rgb(212 212 216/var(--tw-ring-opacity,1))}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px)}.backdrop-blur-md,.backdrop-blur-sm{backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-1000{transition-duration:1s}.ease-linear{transition-timing-function:linear}.placeholder\:font-sans::-moz-placeholder{font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji}.placeholder\:font-sans::placeholder{font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji}.placeholder\:text-zinc-400::-moz-placeholder{--tw-text-opacity:1;color:rgb(161 161 170/var(--tw-text-opacity,1))}.placeholder\:text-zinc-400::placeholder{--tw-text-opacity:1;color:rgb(161 161 170/var(--tw-text-opacity,1))}.hover\:bg-red-50:hover{--tw-bg-opacity:1;background-color:rgb(254 242 242/var(--tw-bg-opacity,1))}.hover\:bg-white:hover{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.hover\:bg-zinc-100:hover{--tw-bg-opacity:1;background-color:rgb(244 244 245/var(--tw-bg-opacity,1))}.hover\:bg-zinc-50:hover{--tw-bg-opacity:1;background-color:rgb(250 250 250/var(--tw-bg-opacity,1))}.hover\:bg-zinc-800:hover{--tw-bg-opacity:1;background-color:rgb(39 39 42/var(--tw-bg-opacity,1))}.hover\:text-red-600:hover{--tw-text-opacity:1;color:rgb(220 38 38/var(--tw-text-opacity,1))}.hover\:text-zinc-900:hover{--tw-text-opacity:1;color:rgb(24 24 27/var(--tw-text-opacity,1))}.hover\:ring-red-200:hover{--tw-ring-opacity:1;--tw-ring-color:rgb(254 202 202/var(--tw-ring-opacity,1))}.focus\:bg-white:focus{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.focus\:ring-zinc-900:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(24 24 27/var(--tw-ring-opacity,1))}.dark\:border-zinc-800:is(.dark *){--tw-border-opacity:1;border-color:rgb(39 39 42/var(--tw-border-opacity,1))}.dark\:border-zinc-800\/80:is(.dark *){border-color:rgba(39,39,42,.8)}.dark\:bg-amber-500\/10:is(.dark *){background-color:rgba(245,158,11,.1)}.dark\:bg-white:is(.dark *){--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.dark\:bg-zinc-600:is(.dark *){--tw-bg-opacity:1;background-color:rgb(82 82 91/var(--tw-bg-opacity,1))}.dark\:bg-zinc-800:is(.dark *){--tw-bg-opacity:1;background-color:rgb(39 39 42/var(--tw-bg-opacity,1))}.dark\:bg-zinc-900:is(.dark *){--tw-bg-opacity:1;background-color:rgb(24 24 27/var(--tw-bg-opacity,1))}.dark\:bg-zinc-950:is(.dark *){--tw-bg-opacity:1;background-color:rgb(9 9 11/var(--tw-bg-opacity,1))}.dark\:bg-zinc-950\/80:is(.dark *){background-color:rgba(9,9,11,.8)}.dark\:bg-zinc-950\/90:is(.dark *){background-color:rgba(9,9,11,.9)}.dark\:text-amber-300:is(.dark *){--tw-text-opacity:1;color:rgb(252 211 77/var(--tw-text-opacity,1))}.dark\:text-red-400:is(.dark *){--tw-text-opacity:1;color:rgb(248 113 113/var(--tw-text-opacity,1))}.dark\:text-white:is(.dark *){--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.dark\:text-zinc-100:is(.dark *){--tw-text-opacity:1;color:rgb(244 244 245/var(--tw-text-opacity,1))}.dark\:text-zinc-300:is(.dark *){--tw-text-opacity:1;color:rgb(212 212 216/var(--tw-text-opacity,1))}.dark\:text-zinc-400:is(.dark *){--tw-text-opacity:1;color:rgb(161 161 170/var(--tw-text-opacity,1))}.dark\:text-zinc-500:is(.dark *){--tw-text-opacity:1;color:rgb(113 113 122/var(--tw-text-opacity,1))}.dark\:text-zinc-800:is(.dark *){--tw-text-opacity:1;color:rgb(39 39 42/var(--tw-text-opacity,1))}.dark\:text-zinc-900:is(.dark *){--tw-text-opacity:1;color:rgb(24 24 27/var(--tw-text-opacity,1))}.dark\:ring-amber-500\/30:is(.dark *){--tw-ring-color:rgba(245,158,11,.3)}.dark\:ring-zinc-600:is(.dark *){--tw-ring-opacity:1;--tw-ring-color:rgb(82 82 91/var(--tw-ring-opacity,1))}.dark\:ring-zinc-700:is(.dark *){--tw-ring-opacity:1;--tw-ring-color:rgb(63 63 70/var(--tw-ring-opacity,1))}.dark\:ring-zinc-800:is(.dark *){--tw-ring-opacity:1;--tw-ring-color:rgb(39 39 42/var(--tw-ring-opacity,1))}.dark\:hover\:bg-red-500\/10:hover:is(.dark *){background-color:rgba(239,68,68,.1)}.dark\:hover\:bg-zinc-200:hover:is(.dark *){--tw-bg-opacity:1;background-color:rgb(228 228 231/var(--tw-bg-opacity,1))}.dark\:hover\:bg-zinc-800:hover:is(.dark *){--tw-bg-opacity:1;background-color:rgb(39 39 42/var(--tw-bg-opacity,1))}.dark\:hover\:bg-zinc-900:hover:is(.dark *){--tw-bg-opacity:1;background-color:rgb(24 24 27/var(--tw-bg-opacity,1))}.dark\:hover\:text-red-400:hover:is(.dark *){--tw-text-opacity:1;color:rgb(248 113 113/var(--tw-text-opacity,1))}.dark\:hover\:text-white:hover:is(.dark *){--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.dark\:focus\:bg-zinc-950:focus:is(.dark *){--tw-bg-opacity:1;background-color:rgb(9 9 11/var(--tw-bg-opacity,1))}.dark\:focus\:ring-white:focus:is(.dark *){--tw-ring-opacity:1;--tw-ring-color:rgb(255 255 255/var(--tw-ring-opacity,1))}@media (min-width:640px){.sm\:inline{display:inline}.sm\:text-5xl{font-size:3rem;line-height:1}}@media (min-width:1024px){.lg\:grid-cols-\[300px_minmax\(0\2c 1fr\)\]{grid-template-columns:300px minmax(0,1fr)}.lg\:px-8{padding-left:2rem;padding-right:2rem}}
+</style>
+<style>
+  .text-balance { text-wrap: balance; }
+  /* 数字等宽，2FA 码翻动时不跳动 */
+  .tnum { font-variant-numeric: tabular-nums; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 999px; border: 3px solid transparent; background-clip: content-box; }
+  .dark ::-webkit-scrollbar-thumb { background: #3f3f46; border: 3px solid transparent; background-clip: content-box; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  }
+</style>
+</head>
+
+<body class="min-h-screen bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100">
+
+<!-- ==================== 顶栏 ==================== -->
+<header class="sticky top-0 z-50 border-b border-zinc-200/80 bg-white/80 backdrop-blur-md dark:border-zinc-800/80 dark:bg-zinc-950/80">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
+    <div class="flex items-center gap-2.5">
+      <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-900 dark:bg-white">
+        <svg viewBox="0 0 24 24" class="h-4 w-4 text-white dark:text-zinc-900" fill="none" stroke="currentColor" stroke-width="1.9">
+          <path d="M3.5 6.5h17v11h-17z" stroke-linejoin="round"/>
+          <path d="m3.9 7.2 8.1 6 8.1-6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="text-sm font-bold tracking-tight text-zinc-900 dark:text-white">MailPull</span>
+      <span class="hidden text-xs text-zinc-500 sm:inline dark:text-zinc-400">接码收信助手</span>
+    </div>
+
+    <div class="flex items-center gap-2.5">
+      <button id="watchBtn" type="button"
+        class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold text-zinc-700 ring-1 ring-inset ring-zinc-300 transition-colors hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-300 dark:ring-zinc-700 dark:hover:bg-zinc-900 dark:hover:text-white">
+        <span id="watchDot" class="h-1.5 w-1.5 rounded-full bg-zinc-400 dark:bg-zinc-600"></span>
+        <span id="watchText">实时监控</span>
+      </button>
+
+      <button id="themeBtn" type="button" aria-label="切换主题"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-full text-zinc-600 ring-1 ring-inset ring-zinc-300 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:ring-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-white">
+        <svg id="iconSun" viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="4" stroke-linecap="round"/>
+          <path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6l1.4 1.4m10 10 1.4 1.4m0-12.8-1.4 1.4m-10 10-1.4 1.4" stroke-linecap="round"/>
+        </svg>
+        <svg id="iconMoon" viewBox="0 0 24 24" class="hidden h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M21 13.2A9 9 0 1 1 10.8 3a7 7 0 0 0 10.2 10.2z" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== 主体 ==================== -->
+<main class="mx-auto flex min-h-[calc(100vh-11rem)] max-w-7xl flex-col px-6 py-8 lg:px-8">
+  <div class="grid flex-1 items-stretch gap-4 lg:grid-cols-[300px_minmax(0,1fr)]">
+
+    <!-- ---------- 左：账号 ---------- -->
+    <aside class="flex flex-col rounded-2xl bg-zinc-50 p-5 ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800">
+      <div class="flex items-center justify-between">
+        <h2 class="text-sm font-semibold tracking-tight text-zinc-900 dark:text-white">邮箱账号</h2>
+        <span id="acctCount" class="rounded-full bg-white px-2 py-0.5 text-[11px] font-semibold text-zinc-600 ring-1 ring-inset ring-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:ring-zinc-700">0</span>
+      </div>
+
+      <div id="acctList" class="mt-4 min-h-0 flex-1 space-y-1.5 overflow-y-auto"></div>
+
+      <p id="acctEmpty" class="mt-6 text-center text-xs leading-relaxed text-zinc-500 dark:text-zinc-500">
+        还没有账号<br/>点下方「添加」开始
+      </p>
+
+      <div class="mt-5 flex gap-2">
+        <button id="addBtn" type="button"
+          class="flex-1 rounded-full bg-zinc-900 px-4 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200">
+          添加账号
+        </button>
+        <button id="delBtn" type="button"
+          class="rounded-full px-4 py-2.5 text-xs font-semibold text-zinc-500 ring-1 ring-inset ring-zinc-300 transition-colors hover:bg-red-50 hover:text-red-600 hover:ring-red-200 dark:text-zinc-400 dark:ring-zinc-700 dark:hover:bg-red-500/10 dark:hover:text-red-400">
+          删除
+        </button>
+      </div>
+    </aside>
+
+    <!-- ---------- 右 ---------- -->
+    <div class="flex min-w-0 flex-col gap-4">
+
+      <!-- 2FA 卡片 -->
+      <section class="rounded-2xl bg-zinc-50 p-6 ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800">
+        <div class="flex flex-wrap items-center justify-between gap-6">
+
+          <div class="min-w-0">
+            <p class="text-[11px] font-semibold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
+              2FA 身份验证器验证码
+            </p>
+            <p id="totpCode" class="mt-2 tnum text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl dark:text-white">
+              —— —— ——
+            </p>
+            <p id="totpMeta" class="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
+              选择账号后显示
+            </p>
+          </div>
+
+          <!-- 倒计时环 -->
+          <div class="relative flex h-[88px] w-[88px] shrink-0 items-center justify-center">
+            <svg viewBox="0 0 100 100" class="absolute inset-0 -rotate-90">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="6"
+                      class="text-zinc-200 dark:text-zinc-800"/>
+              <circle id="ring" cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="6"
+                      stroke-linecap="round" class="text-zinc-900 transition-all duration-1000 ease-linear dark:text-white"
+                      stroke-dasharray="263.9" stroke-dashoffset="0"/>
+            </svg>
+            <span id="ringText" class="tnum text-lg font-bold text-zinc-900 dark:text-white">30</span>
+          </div>
+
+          <div class="flex shrink-0 flex-col gap-2">
+            <button id="copyTotp" type="button"
+              class="rounded-full bg-zinc-900 px-5 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200">
+              复制验证码
+            </button>
+            <button id="clearAcct" type="button"
+              class="rounded-full px-5 py-2.5 text-xs font-semibold text-zinc-600 ring-1 ring-inset ring-zinc-300 transition-colors hover:bg-zinc-100 dark:text-zinc-400 dark:ring-zinc-700 dark:hover:bg-zinc-800">
+              刷新
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 收件箱 -->
+      <section class="flex flex-1 flex-col rounded-2xl bg-zinc-50 ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800">
+        <div class="flex items-center justify-between border-b border-zinc-200 px-6 py-4 dark:border-zinc-800">
+          <div class="flex items-center gap-2.5">
+            <h2 class="text-sm font-semibold tracking-tight text-zinc-900 dark:text-white">收件箱</h2>
+            <span id="mailCount" class="rounded-full bg-white px-2 py-0.5 text-[11px] font-semibold text-zinc-600 ring-1 ring-inset ring-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:ring-zinc-700">0 封</span>
+          </div>
+          <button id="fetchBtn" type="button"
+            class="rounded-full px-4 py-2 text-xs font-semibold text-zinc-700 ring-1 ring-inset ring-zinc-300 transition-colors hover:bg-white hover:text-zinc-900 dark:text-zinc-300 dark:ring-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-white">
+            立即收取
+          </button>
+        </div>
+
+        <div id="mailList" class="min-h-0 flex-1 overflow-y-auto p-3"></div>
+
+        <div id="mailEmpty" class="px-6 pb-10 pt-4 text-center">
+          <p class="text-xs leading-relaxed text-zinc-500 dark:text-zinc-500">
+            暂无邮件<br/>点「立即收取」查询，或开启实时监控
+          </p>
+        </div>
+
+        <!-- 详情 -->
+        <div id="detailWrap" class="hidden border-t border-zinc-200 px-6 py-4 dark:border-zinc-800">
+          <div class="flex items-start justify-between gap-4">
+            <div class="min-w-0">
+              <p id="dSubject" class="truncate text-sm font-semibold text-zinc-900 dark:text-white"></p>
+              <p id="dTime" class="mt-0.5 text-[11px] text-zinc-500 dark:text-zinc-400"></p>
+            </div>
+            <button id="dCopy" type="button"
+              class="shrink-0 rounded-full bg-zinc-900 px-3.5 py-1.5 text-[11px] font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200">
+              复制验证码
+            </button>
+          </div>
+          <p id="dBody" class="mt-2.5 max-h-32 overflow-y-auto whitespace-pre-wrap break-words text-xs leading-relaxed text-zinc-600 dark:text-zinc-400"></p>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<!-- ==================== 底部状态栏 ==================== -->
+<div class="fixed inset-x-0 bottom-0 border-t border-zinc-200 bg-white/90 backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950/90">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-2.5 text-[11px] text-zinc-500 lg:px-8 dark:text-zinc-500">
+    <span id="status">就绪</span>
+    <span class="hidden sm:inline">MailPull v1.0 · 本地运行，数据不上传</span>
+  </div>
+</div>
+<div class="h-10"></div>
+
+<!-- ==================== 添加账号弹窗 ==================== -->
+<div id="modal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-zinc-950/50 p-4 backdrop-blur-sm">
+  <div class="w-full max-w-md rounded-2xl bg-white p-6 ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800">
+    <h3 class="text-base font-semibold tracking-tight text-zinc-900 dark:text-white">添加邮箱账号</h3>
+    <p class="mt-1 text-xs text-zinc-500 dark:text-zinc-400">支持直接粘贴：邮箱----密码----2FA秘钥</p>
+
+    <div class="mt-5 space-y-3.5">
+      <div>
+        <label class="mb-1.5 block text-[11px] font-semibold text-zinc-600 dark:text-zinc-400">邮箱地址</label>
+        <input id="inEmail" type="email" autocomplete="off" spellcheck="false" placeholder="user@example.com"
+          class="w-full rounded-xl bg-zinc-50 px-3.5 py-2.5 text-sm text-zinc-900 ring-1 ring-inset ring-zinc-300 outline-none transition placeholder:text-zinc-400 focus:bg-white focus:ring-2 focus:ring-zinc-900 dark:bg-zinc-950 dark:text-white dark:ring-zinc-700 dark:focus:bg-zinc-950 dark:focus:ring-white" />
+      </div>
+      <div>
+        <label class="mb-1.5 block text-[11px] font-semibold text-zinc-600 dark:text-zinc-400">密码</label>
+        <input id="inPass" type="password" autocomplete="off" placeholder="登录密码"
+          class="w-full rounded-xl bg-zinc-50 px-3.5 py-2.5 text-sm text-zinc-900 ring-1 ring-inset ring-zinc-300 outline-none transition placeholder:text-zinc-400 focus:bg-white focus:ring-2 focus:ring-zinc-900 dark:bg-zinc-950 dark:text-white dark:ring-zinc-700 dark:focus:ring-white" />
+      </div>
+      <div>
+        <label class="mb-1.5 block text-[11px] font-semibold text-zinc-600 dark:text-zinc-400">2FA 秘钥 <span class="font-normal text-zinc-400">（可选）</span></label>
+        <input id="inKey" type="text" autocomplete="off" spellcheck="false" placeholder="Base32 秘钥"
+          class="w-full rounded-xl bg-zinc-50 px-3.5 py-2.5 font-mono text-sm text-zinc-900 ring-1 ring-inset ring-zinc-300 outline-none transition placeholder:font-sans placeholder:text-zinc-400 focus:bg-white focus:ring-2 focus:ring-zinc-900 dark:bg-zinc-950 dark:text-white dark:ring-zinc-700 dark:focus:ring-white" />
+      </div>
+      <div>
+        <label class="mb-1.5 block text-[11px] font-semibold text-zinc-600 dark:text-zinc-400">收信接口 <span class="font-normal text-zinc-400">（留空自动探测）</span></label>
+        <input id="inApi" type="text" autocomplete="off" spellcheck="false" placeholder="https://mail.域名/api/fetch"
+          class="w-full rounded-xl bg-zinc-50 px-3.5 py-2.5 text-sm text-zinc-900 ring-1 ring-inset ring-zinc-300 outline-none transition placeholder:text-zinc-400 focus:bg-white focus:ring-2 focus:ring-zinc-900 dark:bg-zinc-950 dark:text-white dark:ring-zinc-700 dark:focus:ring-white" />
+      </div>
+    </div>
+
+    <p id="modalTip" class="mt-3 min-h-[16px] text-xs"></p>
+
+    <div class="mt-5 flex justify-end gap-2">
+      <button id="mCancel" type="button"
+        class="rounded-full px-4 py-2 text-xs font-semibold text-zinc-600 ring-1 ring-inset ring-zinc-300 transition-colors hover:bg-zinc-50 dark:text-zinc-400 dark:ring-zinc-700 dark:hover:bg-zinc-800">
+        取消
+      </button>
+      <button id="mOk" type="button"
+        class="rounded-full bg-zinc-900 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200">
+        确认添加
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

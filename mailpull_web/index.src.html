@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MailPull — 接码邮箱收信助手</title>
+<!--TAILWIND_CSS-->
+<style>
+  .text-balance { text-wrap: balance; }
+  /* 数字等宽，2FA 码翻动时不跳动 */
+  .tnum { font-variant-numeric: tabular-nums; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 999px; border: 3px solid transparent; background-clip: content-box; }
+  .dark ::-webkit-scrollbar-thumb { background: #3f3f46; border: 3px solid transparent; background-clip: content-box; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  }
+</style>
+</head>
+
+<body class="min-h-screen bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100">
+
+<!-- ==================== 顶栏 ==================== -->
+<header class="sticky top-0 z-50 border-b border-zinc-200/80 bg-white/80 backdrop-blur-md dark:border-zinc-800/80 dark:bg-zinc-950/80">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
+    <div class="flex items-center gap-2.5">
+      <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-900 dark:bg-white">
+        <svg viewBox="0 0 24 24" class="h-4 w-4 text-white dark:text-zinc-900" fill="none" stroke="currentColor" stroke-width="1.9">
+          <path d="M3.5 6.5h17v11h-17z" stroke-linejoin="round"/>
+          <path d="m3.9 7.2 8.1 6 8.1-6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="text-sm font-bold tracking-tight text-zinc-900 dark:text-white">MailPull</span>
+      <span class="hidden text-xs text-zinc-500 sm:inline dark:text-zinc-400">接码收信助手</span>
+    </div>
+
+    <div class="flex items-center gap-2.5">
+      <button id="watchBtn" type="button"
+        class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold text-zinc-700 ring-1 ring-inset ring-zinc-300 transition-colors hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-300 dark:ring-zinc-700 dark:hover:bg-zinc-900 dark:hover:text-white">
+        <span id="watchDot" class="h-1.5 w-1.5 rounded-full bg-zinc-400 dark:bg-zinc-600"></span>
+        <span id="watchText">实时监控</span>
+      </button>
+
+      <button id="themeBtn" type="button" aria-label="切换主题"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-full text-zinc-600 ring-1 ring-inset ring-zinc-300 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:ring-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-white">
+        <svg id="iconSun" viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="4" stroke-linecap="round"/>
+          <path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6l1.4 1.4m10 10 1.4 1.4m0-12.8-1.4 1.4m-10 10-1.4 1.4" stroke-linecap="round"/>
+        </svg>
+        <svg id="iconMoon" viewBox="0 0 24 24" class="hidden h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M21 13.2A9 9 0 1 1 10.8 3a7 7 0 0 0 10.2 10.2z" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== 主体 ==================== -->
+<main class="mx-auto flex min-h-[calc(100vh-11rem)] max-w-7xl flex-col px-6 py-8 lg:px-8">
+  <div class="grid flex-1 items-stretch gap-4 lg:grid-cols-[300px_minmax(0,1fr)]">
+
+    <!-- ---------- 左：账号 ---------- -->
+    <aside class="flex flex-col rounded-2xl bg-zinc-50 p-5 ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800">
+      <div class="flex items-center justify-between">
+        <h2 class="text-sm font-semibold tracking-tight text-zinc-900 dark:text-white">邮箱账号</h2>
+        <span id="acctCount" class="rounded-full bg-white px-2 py-0.5 text-[11px] font-semibold text-zinc-600 ring-1 ring-inset ring-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:ring-zinc-700">0</span>
+      </div>
+
+      <div id="acctList" class="mt-4 min-h-0 flex-1 space-y-1.5 overflow-y-auto"></div>
+
+      <p id="acctEmpty" class="mt-6 text-center text-xs leading-relaxed text-zinc-500 dark:text-zinc-500">
+        还没有账号<br/>点下方「添加」开始
+      </p>
+
+      <div class="mt-5 flex gap-2">
+        <button id="addBtn" type="button"
+          class="flex-1 rounded-full bg-zinc-900 px-4 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200">
+          添加账号
+        </button>
+        <button id="delBtn" type="button"
+          class="rounded-full px-4 py-2.5 text-xs font-semibold text-zinc-500 ring-1 ring-inset ring-zinc-300 transition-colors hover:bg-red-50 hover:text-red-600 hover:ring-red-200 dark:text-zinc-400 dark:ring-zinc-700 dark:hover:bg-red-500/10 dark:hover:text-red-400">
+          删除
+        </button>
+      </div>
+    </aside>
+
+    <!-- ---------- 右 ---------- -->
+    <div class="flex min-w-0 flex-col gap-4">
+
+      <!-- 2FA 卡片 -->
+      <section class="rounded-2xl bg-zinc-50 p-6 ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800">
+        <div class="flex flex-wrap items-center justify-between gap-6">
+
+          <div class="min-w-0">
+            <p class="text-[11px] font-semibold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
+              2FA 身份验证器验证码
+            </p>
+            <p id="totpCode" class="mt-2 tnum text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl dark:text-white">
+              —— —— ——
+            </p>
+            <p id="totpMeta" class="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
+              选择账号后显示
+            </p>
+          </div>
+
+          <!-- 倒计时环 -->
+          <div class="relative flex h-[88px] w-[88px] shrink-0 items-center justify-center">
+            <svg viewBox="0 0 100 100" class="absolute inset-0 -rotate-90">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="6"
+                      class="text-zinc-200 dark:text-zinc-800"/>
+              <circle id="ring" cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="6"
+                      stroke-linecap="round" class="text-zinc-900 transition-all duration-1000 ease-linear dark:text-white"
+                      stroke-dasharray="263.9" stroke-dashoffset="0"/>
+            </svg>
+            <span id="ringText" class="tnum text-lg font-bold text-zinc-900 dark:text-white">30</span>
+          </div>
+
+          <div class="flex shrink-0 flex-col gap-2">
+            <button id="copyTotp" type="button"
+              class="rounded-full bg-zinc-900 px-5 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200">
+              复制验证码
+            </button>
+            <button id="clearAcct" type="button"
+              class="rounded-full px-5 py-2.5 text-xs font-semibold text-zinc-600 ring-1 ring-inset ring-zinc-300 transition-colors hover:bg-zinc-100 dark:text-zinc-400 dark:ring-zinc-700 dark:hover:bg-zinc-800">
+              刷新
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 收件箱 -->
+      <section class="flex flex-1 flex-col rounded-2xl bg-zinc-50 ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800">
+        <div class="flex items-center justify-between border-b border-zinc-200 px-6 py-4 dark:border-zinc-800">
+          <div class="flex items-center gap-2.5">
+            <h2 class="text-sm font-semibold tracking-tight text-zinc-900 dark:text-white">收件箱</h2>
+            <span id="mailCount" class="rounded-full bg-white px-2 py-0.5 text-[11px] font-semibold text-zinc-600 ring-1 ring-inset ring-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:ring-zinc-700">0 封</span>
+          </div>
+          <button id="fetchBtn" type="button"
+            class="rounded-full px-4 py-2 text-xs font-semibold text-zinc-700 ring-1 ring-inset ring-zinc-300 transition-colors hover:bg-white hover:text-zinc-900 dark:text-zinc-300 dark:ring-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-white">
+            立即收取
+          </button>
+        </div>
+
+        <div id="mailList" class="min-h-0 flex-1 overflow-y-auto p-3"></div>
+
+        <div id="mailEmpty" class="px-6 pb-10 pt-4 text-center">
+          <p class="text-xs leading-relaxed text-zinc-500 dark:text-zinc-500">
+            暂无邮件<br/>点「立即收取」查询，或开启实时监控
+          </p>
+        </div>
+
+        <!-- 详情 -->
+        <div id="detailWrap" class="hidden border-t border-zinc-200 px-6 py-4 dark:border-zinc-800">
+          <div class="flex items-start justify-between gap-4">
+            <div class="min-w-0">
+              <p id="dSubject" class="truncate text-sm font-semibold text-zinc-900 dark:text-white"></p>
+              <p id="dTime" class="mt-0.5 text-[11px] text-zinc-500 dark:text-zinc-400"></p>
+            </div>
+            <button id="dCopy" type="button"
+              class="shrink-0 rounded-full bg-zinc-900 px-3.5 py-1.5 text-[11px] font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200">
+              复制验证码
+            </button>
+          </div>
+          <p id="dBody" class="mt-2.5 max-h-32 overflow-y-auto whitespace-pre-wrap break-words text-xs leading-relaxed text-zinc-600 dark:text-zinc-400"></p>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<!-- ==================== 底部状态栏 ==================== -->
+<div class="fixed inset-x-0 bottom-0 border-t border-zinc-200 bg-white/90 backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950/90">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-2.5 text-[11px] text-zinc-500 lg:px-8 dark:text-zinc-500">
+    <span id="status">就绪</span>
+    <span class="hidden sm:inline">MailPull v1.0 · 本地运行，数据不上传</span>
+  </div>
+</div>
+<div class="h-10"></div>
+
+<!-- ==================== 添加账号弹窗 ==================== -->
+<div id="modal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-zinc-950/50 p-4 backdrop-blur-sm">
+  <div class="w-full max-w-md rounded-2xl bg-white p-6 ring-1 ring-zinc-200 dark:bg-zinc-900 dark:ring-zinc-800">
+    <h3 class="text-base font-semibold tracking-tight text-zinc-900 dark:text-white">添加邮箱账号</h3>
+    <p class="mt-1 text-xs text-zinc-500 dark:text-zinc-400">支持直接粘贴：邮箱----密码----2FA秘钥</p>
+
+    <div class="mt-5 space-y-3.5">
+      <div>
+        <label class="mb-1.5 block text-[11px] font-semibold text-zinc-600 dark:text-zinc-400">邮箱地址</label>
+        <input id="inEmail" type="email" autocomplete="off" spellcheck="false" placeholder="user@example.com"
+          class="w-full rounded-xl bg-zinc-50 px-3.5 py-2.5 text-sm text-zinc-900 ring-1 ring-inset ring-zinc-300 outline-none transition placeholder:text-zinc-400 focus:bg-white focus:ring-2 focus:ring-zinc-900 dark:bg-zinc-950 dark:text-white dark:ring-zinc-700 dark:focus:bg-zinc-950 dark:focus:ring-white" />
+      </div>
+      <div>
+        <label class="mb-1.5 block text-[11px] font-semibold text-zinc-600 dark:text-zinc-400">密码</label>
+        <input id="inPass" type="password" autocomplete="off" placeholder="登录密码"
+          class="w-full rounded-xl bg-zinc-50 px-3.5 py-2.5 text-sm text-zinc-900 ring-1 ring-inset ring-zinc-300 outline-none transition placeholder:text-zinc-400 focus:bg-white focus:ring-2 focus:ring-zinc-900 dark:bg-zinc-950 dark:text-white dark:ring-zinc-700 dark:focus:ring-white" />
+      </div>
+      <div>
+        <label class="mb-1.5 block text-[11px] font-semibold text-zinc-600 dark:text-zinc-400">2FA 秘钥 <span class="font-normal text-zinc-400">（可选）</span></label>
+        <input id="inKey" type="text" autocomplete="off" spellcheck="false" placeholder="Base32 秘钥"
+          class="w-full rounded-xl bg-zinc-50 px-3.5 py-2.5 font-mono text-sm text-zinc-900 ring-1 ring-inset ring-zinc-300 outline-none transition placeholder:font-sans placeholder:text-zinc-400 focus:bg-white focus:ring-2 focus:ring-zinc-900 dark:bg-zinc-950 dark:text-white dark:ring-zinc-700 dark:focus:ring-white" />
+      </div>
+      <div>
+        <label class="mb-1.5 block text-[11px] font-semibold text-zinc-600 dark:text-zinc-400">收信接口 <span class="font-normal text-zinc-400">（留空自动探测）</span></label>
+        <input id="inApi" type="text" autocomplete="off" spellcheck="false" placeholder="https://mail.域名/api/fetch"
+          class="w-full rounded-xl bg-zinc-50 px-3.5 py-2.5 text-sm text-zinc-900 ring-1 ring-inset ring-zinc-300 outline-none transition placeholder:text-zinc-400 focus:bg-white focus:ring-2 focus:ring-zinc-900 dark:bg-zinc-950 dark:text-white dark:ring-zinc-700 dark:focus:ring-white" />
+      </div>
+    </div>
+
+    <p id="modalTip" class="mt-3 min-h-[16px] text-xs"></p>
+
+    <div class="mt-5 flex justify-end gap-2">
+      <button id="mCancel" type="button"
+        class="rounded-full px-4 py-2 text-xs font-semibold text-zinc-600 ring-1 ring-inset ring-zinc-300 transition-colors hover:bg-zinc-50 dark:text-zinc-400 dark:ring-zinc-700 dark:hover:bg-zinc-800">
+        取消
+      </button>
+      <button id="mOk" type="button"
+        class="rounded-full bg-zinc-900 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200">
+        确认添加
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

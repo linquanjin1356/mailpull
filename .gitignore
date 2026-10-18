@@ -1,0 +1,44 @@
+# ---------- 依赖 ----------
+node_modules/
+.pnp
+.pnp.js
+
+# ---------- 构建产物 ----------
+.next/
+out/
+dist/
+build/
+*.spec
+
+# ---------- 打包/二进制 ----------
+*.zip
+*.exe
+*.dll
+*.so
+*.dylib
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# ---------- 本地私有数据（绝不要提交） ----------
+.workbuddy/
+accounts.json
+.env
+.env.local
+*.log
+
+# ---------- 临时文件 ----------
+_preview*.html
+_shot*.html
+*_sm.png
+
+# ---------- 编辑器/系统 ----------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

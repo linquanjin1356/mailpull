@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>营销区块预览 · Nucleus（离线版）</title>
+<script>
+  // class 策略 + text-balance 兜底
+  // 首屏恢复主题，避免闪白
+  (function () {
+    try {
+      var s = localStorage.getItem("theme");
+      var d = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (s === "dark" || (!s && d)) document.documentElement.classList.add("dark");
+    } catch (e) {}
+  })();
+</script>
+<style>
+/* Tailwind 编译产物（离线内联，无需联网） */
+*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.top-0{top:0}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.ml-2{margin-left:.5rem}.mt-10{margin-top:2.5rem}.mt-12{margin-top:3rem}.mt-16{margin-top:4rem}.mt-2{margin-top:.5rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-1\.5{height:.375rem}.h-11{height:2.75rem}.h-16{height:4rem}.h-2{height:.5rem}.h-2\.5{height:.625rem}.h-4{height:1rem}.h-8{height:2rem}.h-9{height:2.25rem}.h-\[1\.375rem\]{height:1.375rem}.h-full{height:100%}.min-h-screen{min-height:100vh}.w-1\.5{width:.375rem}.w-11{width:2.75rem}.w-2{width:.5rem}.w-2\.5{width:.625rem}.w-4{width:1rem}.w-8{width:2rem}.w-9{width:2.25rem}.w-\[1\.375rem\]{width:1.375rem}.w-\[38\%\]{width:38%}.w-\[45\%\]{width:45%}.w-\[62\%\]{width:62%}.w-\[71\%\]{width:71%}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-7xl{max-width:80rem}.shrink-0{flex-shrink:0}@keyframes ping{75%,to{transform:scale(2);opacity:0}}.animate-ping{animation:ping 1s cubic-bezier(0,0,.2,1) infinite}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-2\.5{gap:.625rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-7{gap:1.75rem}.gap-8{gap:2rem}.space-y-2\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.625rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.625rem*var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.text-wrap{text-wrap:wrap}.text-balance{text-wrap:balance}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-y{border-top-width:1px}.border-b,.border-y{border-bottom-width:1px}.border-t{border-top-width:1px}.border-zinc-200{--tw-border-opacity:1;border-color:rgb(228 228 231/var(--tw-border-opacity,1))}.border-zinc-200\/80{border-color:hsla(240,6%,90%,.8)}.bg-emerald-100{--tw-bg-opacity:1;background-color:rgb(209 250 229/var(--tw-bg-opacity,1))}.bg-emerald-400{--tw-bg-opacity:1;background-color:rgb(52 211 153/var(--tw-bg-opacity,1))}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129/var(--tw-bg-opacity,1))}.bg-sky-100{--tw-bg-opacity:1;background-color:rgb(224 242 254/var(--tw-bg-opacity,1))}.bg-sky-400{--tw-bg-opacity:1;background-color:rgb(56 189 248/var(--tw-bg-opacity,1))}.bg-violet-100{--tw-bg-opacity:1;background-color:rgb(237 233 254/var(--tw-bg-opacity,1))}.bg-violet-400{--tw-bg-opacity:1;background-color:rgb(167 139 250/var(--tw-bg-opacity,1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.bg-white\/80{background-color:hsla(0,0%,100%,.8)}.bg-zinc-100{--tw-bg-opacity:1;background-color:rgb(244 244 245/var(--tw-bg-opacity,1))}.bg-zinc-200{--tw-bg-opacity:1;background-color:rgb(228 228 231/var(--tw-bg-opacity,1))}.bg-zinc-300{--tw-bg-opacity:1;background-color:rgb(212 212 216/var(--tw-bg-opacity,1))}.bg-zinc-50{--tw-bg-opacity:1;background-color:rgb(250 250 250/var(--tw-bg-opacity,1))}.bg-zinc-50\/50{background-color:hsla(0,0%,98%,.5)}.bg-zinc-900{--tw-bg-opacity:1;background-color:rgb(24 24 27/var(--tw-bg-opacity,1))}.p-4{padding:1rem}.p-8{padding:2rem}.px-1\.5{padding-left:.375rem;padding-right:.375rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-7{padding-left:1.75rem;padding-right:1.75rem}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-24{padding-top:6rem;padding-bottom:6rem}.py-3\.5{padding-top:.875rem;padding-bottom:.875rem}.text-center{text-align:center}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-5xl{font-size:3rem;line-height:1}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.tracking-tight{letter-spacing:-.025em}.tracking-wide{letter-spacing:.025em}.tracking-widest{letter-spacing:.1em}.text-emerald-700{--tw-text-opacity:1;color:rgb(4 120 87/var(--tw-text-opacity,1))}.text-sky-700{--tw-text-opacity:1;color:rgb(3 105 161/var(--tw-text-opacity,1))}.text-violet-700{--tw-text-opacity:1;color:rgb(109 40 217/var(--tw-text-opacity,1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.text-zinc-400{--tw-text-opacity:1;color:rgb(161 161 170/var(--tw-text-opacity,1))}.text-zinc-500{--tw-text-opacity:1;color:rgb(113 113 122/var(--tw-text-opacity,1))}.text-zinc-600{--tw-text-opacity:1;color:rgb(82 82 91/var(--tw-text-opacity,1))}.text-zinc-700{--tw-text-opacity:1;color:rgb(63 63 70/var(--tw-text-opacity,1))}.text-zinc-900{--tw-text-opacity:1;color:rgb(24 24 27/var(--tw-text-opacity,1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.opacity-30{opacity:.3}.opacity-40{opacity:.4}.opacity-75{opacity:.75}.shadow-sm{--tw-shadow:0 1px 2px 0 rgba(0,0,0,.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.ring-1{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.ring-inset{--tw-ring-inset:inset}.ring-zinc-200{--tw-ring-opacity:1;--tw-ring-color:rgb(228 228 231/var(--tw-ring-opacity,1))}.ring-zinc-300{--tw-ring-opacity:1;--tw-ring-color:rgb(212 212 216/var(--tw-ring-opacity,1))}.grayscale{--tw-grayscale:grayscale(100%);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-shadow{transition-property:box-shadow;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-200{transition-duration:.2s}.duration-300{transition-duration:.3s}.text-balance{text-wrap:balance}@media (prefers-reduced-motion:reduce){*,:after,:before{animation-duration:.01ms!important;transition-duration:.01ms!important}}.hover\:bg-zinc-100:hover{--tw-bg-opacity:1;background-color:rgb(244 244 245/var(--tw-bg-opacity,1))}.hover\:bg-zinc-50:hover{--tw-bg-opacity:1;background-color:rgb(250 250 250/var(--tw-bg-opacity,1))}.hover\:bg-zinc-800:hover{--tw-bg-opacity:1;background-color:rgb(39 39 42/var(--tw-bg-opacity,1))}.hover\:text-zinc-900:hover{--tw-text-opacity:1;color:rgb(24 24 27/var(--tw-text-opacity,1))}.hover\:shadow-lg:hover{--tw-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color),0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.hover\:shadow-zinc-900\/5:hover{--tw-shadow-color:rgba(24,24,27,.05);--tw-shadow:var(--tw-shadow-colored)}.focus-visible\:outline-none:focus-visible{outline:2px solid transparent;outline-offset:2px}.focus-visible\:ring-2:focus-visible{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.focus-visible\:ring-zinc-500:focus-visible{--tw-ring-opacity:1;--tw-ring-color:rgb(113 113 122/var(--tw-ring-opacity,1))}.focus-visible\:ring-zinc-900:focus-visible{--tw-ring-opacity:1;--tw-ring-color:rgb(24 24 27/var(--tw-ring-opacity,1))}.focus-visible\:ring-offset-2:focus-visible{--tw-ring-offset-width:2px}.focus-visible\:ring-offset-white:focus-visible{--tw-ring-offset-color:#fff}.group:hover .group-hover\:text-zinc-900{--tw-text-opacity:1;color:rgb(24 24 27/var(--tw-text-opacity,1))}.group:hover .group-hover\:grayscale-0{--tw-grayscale:grayscale(0);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.dark\:border-zinc-700:is(.dark *){--tw-border-opacity:1;border-color:rgb(63 63 70/var(--tw-border-opacity,1))}.dark\:border-zinc-800:is(.dark *){--tw-border-opacity:1;border-color:rgb(39 39 42/var(--tw-border-opacity,1))}.dark\:border-zinc-800\/80:is(.dark *){border-color:rgba(39,39,42,.8)}.dark\:bg-emerald-500\/20:is(.dark *){background-color:rgba(16,185,129,.2)}.dark\:bg-sky-500\/20:is(.dark *){background-color:rgba(14,165,233,.2)}.dark\:bg-violet-500\/20:is(.dark *){background-color:rgba(139,92,246,.2)}.dark\:bg-white:is(.dark *){--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.dark\:bg-zinc-600:is(.dark *){--tw-bg-opacity:1;background-color:rgb(82 82 91/var(--tw-bg-opacity,1))}.dark\:bg-zinc-700:is(.dark *){--tw-bg-opacity:1;background-color:rgb(63 63 70/var(--tw-bg-opacity,1))}.dark\:bg-zinc-800:is(.dark *){--tw-bg-opacity:1;background-color:rgb(39 39 42/var(--tw-bg-opacity,1))}.dark\:bg-zinc-900:is(.dark *){--tw-bg-opacity:1;background-color:rgb(24 24 27/var(--tw-bg-opacity,1))}.dark\:bg-zinc-900\/30:is(.dark *){background-color:rgba(24,24,27,.3)}.dark\:bg-zinc-950:is(.dark *){--tw-bg-opacity:1;background-color:rgb(9 9 11/var(--tw-bg-opacity,1))}.dark\:bg-zinc-950\/60:is(.dark *){background-color:rgba(9,9,11,.6)}.dark\:bg-zinc-950\/80:is(.dark *){background-color:rgba(9,9,11,.8)}.dark\:text-emerald-300:is(.dark *){--tw-text-opacity:1;color:rgb(110 231 183/var(--tw-text-opacity,1))}.dark\:text-sky-300:is(.dark *){--tw-text-opacity:1;color:rgb(125 211 252/var(--tw-text-opacity,1))}.dark\:text-violet-300:is(.dark *){--tw-text-opacity:1;color:rgb(196 181 253/var(--tw-text-opacity,1))}.dark\:text-white:is(.dark *){--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.dark\:text-zinc-100:is(.dark *){--tw-text-opacity:1;color:rgb(244 244 245/var(--tw-text-opacity,1))}.dark\:text-zinc-300:is(.dark *){--tw-text-opacity:1;color:rgb(212 212 216/var(--tw-text-opacity,1))}.dark\:text-zinc-400:is(.dark *){--tw-text-opacity:1;color:rgb(161 161 170/var(--tw-text-opacity,1))}.dark\:text-zinc-500:is(.dark *){--tw-text-opacity:1;color:rgb(113 113 122/var(--tw-text-opacity,1))}.dark\:text-zinc-900:is(.dark *){--tw-text-opacity:1;color:rgb(24 24 27/var(--tw-text-opacity,1))}.dark\:ring-zinc-700:is(.dark *){--tw-ring-opacity:1;--tw-ring-color:rgb(63 63 70/var(--tw-ring-opacity,1))}.dark\:ring-zinc-800:is(.dark *){--tw-ring-opacity:1;--tw-ring-color:rgb(39 39 42/var(--tw-ring-opacity,1))}.dark\:hover\:bg-zinc-200:hover:is(.dark *){--tw-bg-opacity:1;background-color:rgb(228 228 231/var(--tw-bg-opacity,1))}.dark\:hover\:bg-zinc-800:hover:is(.dark *){--tw-bg-opacity:1;background-color:rgb(39 39 42/var(--tw-bg-opacity,1))}.dark\:hover\:bg-zinc-900:hover:is(.dark *){--tw-bg-opacity:1;background-color:rgb(24 24 27/var(--tw-bg-opacity,1))}.dark\:hover\:text-white:hover:is(.dark *){--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.dark\:hover\:text-zinc-300:hover:is(.dark *){--tw-text-opacity:1;color:rgb(212 212 216/var(--tw-text-opacity,1))}.dark\:hover\:shadow-black\/40:hover:is(.dark *){--tw-shadow-color:rgba(0,0,0,.4);--tw-shadow:var(--tw-shadow-colored)}.dark\:focus-visible\:ring-white:focus-visible:is(.dark *){--tw-ring-opacity:1;--tw-ring-color:rgb(255 255 255/var(--tw-ring-opacity,1))}.dark\:focus-visible\:ring-offset-zinc-950:focus-visible:is(.dark *){--tw-ring-offset-color:#09090b}.group:hover .dark\:group-hover\:text-white:is(.dark *){--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}@media (min-width:640px){.sm\:inline-flex{display:inline-flex}.sm\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.sm\:flex-row{flex-direction:row}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}}@media (min-width:768px){.md\:flex{display:flex}}@media (min-width:1024px){.lg\:col-span-2{grid-column:span 2/span 2}.lg\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.lg\:grid-cols-6{grid-template-columns:repeat(6,minmax(0,1fr))}.lg\:px-8{padding-left:2rem;padding-right:2rem}.lg\:py-32{padding-top:8rem;padding-bottom:8rem}.lg\:text-6xl{font-size:3.75rem;line-height:1}}
+</style>
+</head>
+
+<body class="min-h-screen bg-white text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100">
+
+<!-- ==================== 顶部导航 ==================== -->
+<header class="sticky top-0 z-50 border-b border-zinc-200/80 bg-white/80 backdrop-blur-md dark:border-zinc-800/80 dark:bg-zinc-950/80">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:px-8">
+    <a href="#" class="flex items-center gap-2.5">
+      <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-900 dark:bg-white">
+        <svg viewBox="0 0 24 24" class="h-4 w-4 text-white dark:text-zinc-900" fill="currentColor">
+          <path d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5v-9Zm8-2.2L6.4 8.2 12 11.4l5.6-3.2L12 5.3ZM6 9.8v6l5 2.8v-6L6 9.8Zm7 8.8 5-2.8v-6l-5 2.8v6Z"/>
+        </svg>
+      </span>
+      <span class="text-sm font-bold tracking-tight text-zinc-900 dark:text-white">Nucleus</span>
+    </a>
+
+    <nav class="hidden items-center gap-7 text-sm font-medium text-zinc-600 md:flex dark:text-zinc-400">
+      <a href="#features" class="transition-colors hover:text-zinc-900 dark:hover:text-white">功能</a>
+      <a href="#pricing" class="transition-colors hover:text-zinc-900 dark:hover:text-white">定价</a>
+      <a href="#docs" class="transition-colors hover:text-zinc-900 dark:hover:text-white">文档</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <button id="themeBtn" type="button" aria-label="切换主题"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-full text-zinc-600 ring-1 ring-inset ring-zinc-300 transition-colors hover:bg-zinc-100 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 dark:text-zinc-300 dark:ring-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-white">
+        <svg id="iconSun" viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="4" stroke-linecap="round"/>
+          <path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.6 5.6l1.4 1.4m10 10 1.4 1.4m0-12.8-1.4 1.4m-10 10-1.4 1.4" stroke-linecap="round"/>
+        </svg>
+        <svg id="iconMoon" viewBox="0 0 24 24" class="hidden h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M21 13.2A9 9 0 1 1 10.8 3a7 7 0 0 0 10.2 10.2z" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <a href="#start" class="hidden rounded-full bg-zinc-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-zinc-800 sm:inline-flex dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200">
+        开始使用
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ==================== ① 首屏 Hero ==================== -->
+<section class="py-24 lg:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="text-center">
+
+      <span class="inline-flex items-center gap-2 rounded-full bg-zinc-100 px-4 py-1.5 text-xs font-semibold tracking-wide text-zinc-700 ring-1 ring-inset ring-zinc-200 dark:bg-zinc-900 dark:text-zinc-300 dark:ring-zinc-800">
+        <span class="relative flex h-1.5 w-1.5">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75"></span>
+          <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+        </span>
+        v2.0 现已发布
+      </span>
+
+      <h1 class="mt-8 text-5xl lg:text-6xl font-bold tracking-tight text-balance text-zinc-900 dark:text-white">
+        构建产品，而不是配置环境
+      </h1>
+
+      <p class="mt-6 text-lg text-zinc-600 max-w-2xl mx-auto dark:text-zinc-400">
+        从第一天起就把基础架构做对。类型安全、边缘部署、零配置，让团队把时间花在真正重要的事情上。
+      </p>
+
+      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="#start"
+           class="inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-zinc-950 bg-zinc-900 text-white shadow-sm hover:bg-zinc-800 focus-visible:ring-zinc-900 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200 dark:focus-visible:ring-white">
+          免费开始使用
+          <svg class="ml-2 h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75">
+            <path d="M4 10h12m0 0-4.5-4.5M16 10l-4.5 4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <a href="#features"
+           class="inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-zinc-950 text-zinc-700 ring-1 ring-inset ring-zinc-300 hover:bg-zinc-50 hover:text-zinc-900 focus-visible:ring-zinc-500 dark:text-zinc-300 dark:ring-zinc-700 dark:hover:bg-zinc-900 dark:hover:text-white">
+          查看功能特性
+        </a>
+      </div>
+
+      <p class="mt-6 text-xs text-zinc-500 dark:text-zinc-400">
+        无需信用卡 · 5 分钟完成部署 · 随时可退出
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ② 品牌标识区 LogoCloud ==================== -->
+<section class="border-y border-zinc-200 bg-zinc-50/50 py-16 dark:border-zinc-800 dark:bg-zinc-900/30">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <p class="text-center text-xs font-semibold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
+      已有 4,000+ 团队在生产环境使用
+    </p>
+
+    <div class="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+
+      <div class="group flex items-center justify-center gap-2.5">
+        <svg viewBox="0 0 44 44" class="h-8 w-8 shrink-0 grayscale transition-all duration-300 group-hover:grayscale-0" fill="#38bdf8" stroke="#38bdf8" stroke-width="2" stroke-linejoin="round">
+          <path d="M6 30c0-5 4-9 9-9 2-6 8-9 13-6 4 2 6 7 5 12 4 0 7 3 7 7H6z"/>
+        </svg>
+        <span class="text-sm font-semibold text-zinc-500 transition-colors duration-300 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">Nimbus</span>
+      </div>
+
+      <div class="group flex items-center justify-center gap-2.5">
+        <svg viewBox="0 0 44 44" class="h-8 w-8 shrink-0 grayscale transition-all duration-300 group-hover:grayscale-0" fill="#a78bfa" stroke="#a78bfa" stroke-width="2" stroke-linejoin="round">
+          <path d="M22 6 38 34H6z"/>
+          <path d="M22 17 31 34H13z" class="opacity-40"/>
+        </svg>
+        <span class="text-sm font-semibold text-zinc-500 transition-colors duration-300 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">Vertex</span>
+      </div>
+
+      <div class="group flex items-center justify-center gap-2.5">
+        <svg viewBox="0 0 44 44" class="h-8 w-8 shrink-0 grayscale transition-all duration-300 group-hover:grayscale-0" fill="#f472b6" stroke="#f472b6" stroke-width="2">
+          <circle cx="22" cy="22" r="9"/>
+          <ellipse cx="22" cy="22" rx="17" ry="7" class="opacity-40"/>
+        </svg>
+        <span class="text-sm font-semibold text-zinc-500 transition-colors duration-300 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">Orbit</span>
+      </div>
+
+      <div class="group flex items-center justify-center gap-2.5">
+        <svg viewBox="0 0 44 44" class="h-8 w-8 shrink-0 grayscale transition-all duration-300 group-hover:grayscale-0" fill="#fb923c" stroke="#fb923c" stroke-width="2">
+          <rect x="8" y="8" width="13" height="13" rx="3"/>
+          <rect x="23" y="23" width="13" height="13" rx="3" class="opacity-40"/>
+        </svg>
+        <span class="text-sm font-semibold text-zinc-500 transition-colors duration-300 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">Forge</span>
+      </div>
+
+      <div class="group flex items-center justify-center gap-2.5">
+        <svg viewBox="0 0 44 44" class="h-8 w-8 shrink-0 grayscale transition-all duration-300 group-hover:grayscale-0" fill="none" stroke="#34d399" stroke-width="2">
+          <circle cx="22" cy="22" r="15" class="opacity-30" fill="#34d399"/>
+          <path d="M7 22h30M22 7c5 5 5 25 0 30M22 7c-5 5-5 25 0 30"/>
+        </svg>
+        <span class="text-sm font-semibold text-zinc-500 transition-colors duration-300 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">Atlas</span>
+      </div>
+
+      <div class="group flex items-center justify-center gap-2.5">
+        <svg viewBox="0 0 44 44" class="h-8 w-8 shrink-0 grayscale transition-all duration-300 group-hover:grayscale-0" fill="none" stroke="#facc15" stroke-width="2" stroke-linecap="round">
+          <path d="M22 8v8M22 28v8M8 22h8M28 22h8"/>
+          <circle cx="22" cy="22" r="6" fill="#facc15"/>
+        </svg>
+        <span class="text-sm font-semibold text-zinc-500 transition-colors duration-300 group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-white">Lumen</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ③ 功能便当网格 BentoFeatures ==================== -->
+<section id="features" class="py-24 lg:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-balance text-zinc-900 sm:text-4xl dark:text-white">
+        你需要的一切，都在这里
+      </h2>
+      <p class="mt-4 text-base text-zinc-600 dark:text-zinc-400">
+        不必再拼装十几个第三方服务。核心能力已经内建，开箱即用。
+      </p>
+    </div>
+
+    <div class="mt-16 grid lg:grid-cols-3 gap-4">
+
+      <!-- 首卡：跨两列 -->
+      <article class="group relative overflow-hidden rounded-2xl bg-zinc-50 p-8 ring-1 ring-zinc-200 transition-shadow duration-300 hover:shadow-lg hover:shadow-zinc-900/5 lg:col-span-2 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:shadow-black/40">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white ring-1 ring-zinc-200 dark:bg-zinc-800 dark:ring-zinc-700">
+          <svg viewBox="0 0 30 30" class="h-[1.375rem] w-[1.375rem] text-zinc-700 dark:text-zinc-300" fill="none" stroke="currentColor" stroke-width="1.75">
+            <path d="M8 16h8m-8 4h5m6-8h9v9a3 3 0 0 1-3 3h-9a3 3 0 0 1-3-3v-9z" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-zinc-900 dark:text-white">实时协同编辑</h3>
+        <p class="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+          多人同时在线编辑，光标位置实时同步，冲突自动合并。团队不再需要来回传文件，也不会有人覆盖别人的改动。
+        </p>
+
+        <!-- 首卡可视化 -->
+        <div class="mt-6 rounded-xl border border-zinc-200 bg-white p-4 dark:border-zinc-700 dark:bg-zinc-950/60">
+          <div class="flex items-center gap-1.5">
+            <span class="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
+            <span class="ml-2 text-[11px] text-zinc-400 dark:text-zinc-500">roadmap.md</span>
+          </div>
+
+          <div class="mt-4 space-y-2.5">
+            <div class="flex items-center gap-2">
+              <span class="h-2 w-2 rounded-full bg-sky-400"></span>
+              <div class="h-2 w-[62%] rounded bg-zinc-200 dark:bg-zinc-700"></div>
+              <span class="rounded bg-sky-100 px-1.5 py-0.5 text-[10px] font-medium text-sky-700 dark:bg-sky-500/20 dark:text-sky-300">林</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="h-2 w-2 rounded-full bg-violet-400"></span>
+              <div class="h-2 w-[45%] rounded bg-zinc-200 dark:bg-zinc-700"></div>
+              <span class="rounded bg-violet-100 px-1.5 py-0.5 text-[10px] font-medium text-violet-700 dark:bg-violet-500/20 dark:text-violet-300">张</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+              <div class="h-2 w-[71%] rounded bg-zinc-200 dark:bg-zinc-700"></div>
+              <span class="rounded bg-emerald-100 px-1.5 py-0.5 text-[10px] font-medium text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300">我</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="h-2 w-2 rounded-full bg-zinc-300 dark:bg-zinc-600"></span>
+              <div class="h-2 w-[38%] rounded bg-zinc-200 dark:bg-zinc-700"></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 卡 2 -->
+      <article class="group relative overflow-hidden rounded-2xl bg-zinc-50 p-8 ring-1 ring-zinc-200 transition-shadow duration-300 hover:shadow-lg hover:shadow-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:shadow-black/40">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white ring-1 ring-zinc-200 dark:bg-zinc-800 dark:ring-zinc-700">
+          <svg viewBox="0 0 30 30" class="h-[1.375rem] w-[1.375rem] text-zinc-700 dark:text-zinc-300" fill="none" stroke="currentColor" stroke-width="1.75">
+            <path d="M12 15v-3a4 4 0 1 1 8 0v3m-9 0h10v6H11v-6z" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-zinc-900 dark:text-white">端到端加密</h3>
+        <p class="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">传输与存储全程加密，密钥仅你持有。</p>
+      </article>
+
+      <!-- 卡 3 -->
+      <article class="group relative overflow-hidden rounded-2xl bg-zinc-50 p-8 ring-1 ring-zinc-200 transition-shadow duration-300 hover:shadow-lg hover:shadow-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:shadow-black/40">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white ring-1 ring-zinc-200 dark:bg-zinc-800 dark:ring-zinc-700">
+          <svg viewBox="0 0 30 30" class="h-[1.375rem] w-[1.375rem] text-zinc-700 dark:text-zinc-300" fill="none" stroke="currentColor" stroke-width="1.75">
+            <path d="M12 7a9 9 0 1 0 0 18 9 9 0 0 0 0-18zm0 18c3-3 3-15 0-18m0 18c-3-3-3-15 0-18M3.5 13h18M3.5 19h18" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-zinc-900 dark:text-white">边缘部署</h3>
+        <p class="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">全球 30+ 节点，就近响应。</p>
+      </article>
+
+      <!-- 卡 4 -->
+      <article class="group relative overflow-hidden rounded-2xl bg-zinc-50 p-8 ring-1 ring-zinc-200 transition-shadow duration-300 hover:shadow-lg hover:shadow-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:shadow-black/40">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white ring-1 ring-zinc-200 dark:bg-zinc-800 dark:ring-zinc-700">
+          <svg viewBox="0 0 30 30" class="h-[1.375rem] w-[1.375rem] text-zinc-700 dark:text-zinc-300" fill="none" stroke="currentColor" stroke-width="1.75">
+            <path d="M9 8 4 16l5 8m6-16 5 8-5 8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-zinc-900 dark:text-white">类型安全</h3>
+        <p class="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">端到端推导，错误在编译期暴露。</p>
+      </article>
+
+      <!-- 卡 5 -->
+      <article class="group relative overflow-hidden rounded-2xl bg-zinc-50 p-8 ring-1 ring-zinc-200 transition-shadow duration-300 hover:shadow-lg hover:shadow-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:shadow-black/40">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white ring-1 ring-zinc-200 dark:bg-zinc-800 dark:ring-zinc-700">
+          <svg viewBox="0 0 30 30" class="h-[1.375rem] w-[1.375rem] text-zinc-700 dark:text-zinc-300" fill="none" stroke="currentColor" stroke-width="1.75">
+            <path d="M4 19h16M7 19v-6m5 6V9m5 10v-4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-zinc-900 dark:text-white">可观测性</h3>
+        <p class="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">链路追踪、日志、指标开箱即用。</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ==================== 页脚 ==================== -->
+<footer class="border-t border-zinc-200 py-10 dark:border-zinc-800">
+  <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 text-xs text-zinc-500 sm:flex-row lg:px-8 dark:text-zinc-500">
+    <p>© 2026 Nucleus. 保留所有权利。</p>
+    <div class="flex gap-6">
+      <a href="#" class="transition-colors hover:text-zinc-900 dark:hover:text-zinc-300">隐私政策</a>
+      <a href="#" class="transition-colors hover:text-zinc-900 dark:hover:text-zinc-300">服务条款</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // 主题切换
+  (function () {
+    var btn = document.getElementById("themeBtn");
+    var sun = document.getElementById("iconSun");
+    var moon = document.getElementById("iconMoon");
+    function paint() {
+      var dark = document.documentElement.classList.contains("dark");
+      sun.classList.toggle("hidden", dark);
+      moon.classList.toggle("hidden", !dark);
+    }
+    paint();
+    btn.addEventListener("click", function () {
+      var next = !document.documentElement.classList.contains("dark");
+      document.documentElement.classList.toggle("dark", next);
+      try { localStorage.setItem("theme", next ? "dark" : "light"); } catch (e) {}
+      paint();
+    });
+  })();
+</script>
+</body>
+</html>
